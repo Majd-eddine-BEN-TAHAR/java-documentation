@@ -1,0 +1,5 @@
+compile => 
+    javac --module-path ./javafx-sdk-17/lib --add-modules javafx.controls,javafx.fxml src/MainApp.java src/SampleController.java
+
+run => 
+    java --module-path ./javafx-sdk-17/lib --add-modules javafx.controls,javafx.fxml -cp src MainApp

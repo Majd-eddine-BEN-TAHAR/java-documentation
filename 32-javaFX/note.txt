@@ -1,0 +1,13 @@
+there are a lot of ways to configure the compiling and running:
+    1. First way, locally, like node_modules in nodejs : 
+        1. download javafx and add the complete javafx sdk extracted folder(legal|lib|src|.zip) in the folder you are working on
+        2. write your Main java file(the entry point to your app)
+        3. To compile => javac --module-path ./javafx-sdk-17/lib --add-modules javafx.controls Main.java
+        4. To run : java --module-path ./javafx-sdk-17/lib/ --add-modules javafx.controls Main 
+
+    2. Second way, globally, like npm -g so you install it one time only, place the modules in a global folder : 
+        1. create a folder in your OS like /home/Yanki/libraries
+        2. download javafx and put the complete javafx sdk extracted folder(legal|lib|src|.zip) in /home/Yanki/libraries folder
+        3. write your Main java file(the entry point to your app)
+        4. To compile => javac --module-path /home/Yanki/libraries/javafx-sdk-17/lib --add-modules javafx.controls Main.java
+        5. To run : java --module-path /home/Yanki/libraries/javafx-sdk-17/lib/ --add-modules javafx.controls Main 

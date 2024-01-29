@@ -1,0 +1,6 @@
+compile:
+    1. make sure you are in the root of the project, same as this file
+    2. run this =>  javac -cp "lib/*" -d bin src/Main.java src/server/HttpServerHandler.java src/database/DatabaseInitializer.java
+
+run:
+    java -cp "bin:lib/*" Main

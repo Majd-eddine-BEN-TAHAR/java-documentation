@@ -1,0 +1,33 @@
+1. compile code using:
+    javac SimpleApp.java
+
+2. create MANIFEST.MF and add on it this line and make sure Make sure to a newline at the end of the file:
+    Main-Class: SimpleApp 
+
+3. create a JAR file using this command:
+    jar cfe SimpleApp.jar SimpleApp SimpleApp*.class
+                
+                c creates a new JAR file.
+                f indicates that you want the output to go to a file rather than to stdout.
+                e specifies the entry point for the application, in this case, SimpleApp.
+                SimpleApp.jar is the name of the JAR file to create.
+                SimpleApp*.class includes SimpleApp.class and any inner class
+
+4. run the jar file :
+    java -jar SimpleApp.jar
+
+5. Making the JAR File Executable by double click because by default linux don't allow the execution of a JAR file by double-clicking it directly
+    chmod +x SimpleApp.jar
+
+6. Create a desktop entry for your application in ubuntu:
+    1. nano nameOfTheApp
+    2. add this to the File, and change the path to the jar file and change the icon :
+        [Desktop Entry]
+        Name=Your application name
+        Exec=java -jar /path/to/YourEditorApp.jar
+        Icon=/path/to/your-icon.png
+        Terminal=false
+        Type=Application
+        Categories=Utility;
+    
+    3. move the created file to => ~/.local/share/applications/

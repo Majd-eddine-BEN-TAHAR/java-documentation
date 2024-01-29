@@ -1,0 +1,216 @@
+-- 1 -: Naming Conventions : 
+    a. Classes: Start with an uppercase letter (CamelCase).
+    b. Methods and variables: Start with a lowercase letter.
+    c. Constants: Use uppercase letters with underscores (FINAL_CONSTANT).
+
+-- 2 -: Variable Initialization and Declaration Rules => Java vs Go :
+        In Java, variables must be both declared and initialized before use; 
+        declaration alone is not sufficient. 
+        If you declare a variable without initialization in Java, it will not produce an issue during compilation, but attempting to use in it the program without the initialization will result in a compilation error. 
+        In contrast, Golang automatically initializes declared variables with their zero values(doesn't exist in java), making them ready for use without explicit initialization.
+
+-- 2 -: One Public Class Per File: 
+        In Java, each file can contain only one public class.
+
+-- 3 -: Filename Must Match the Public Class Name: 
+        If a class within a file is declared as public, the filename must be exactly the same as the public class name, with the addition of the .java extension. 
+        This is a strict rule enforced by the Java compiler.
+        For example, if you have a public class named MyClass, the filename must be MyClass.java.
+
+-- 4 -: Null Safety:
+        Always check for null before using an object to avoid NullPointerException.
+
+-- 5 -: Resource Management:
+        Always close resources (like files, streams) in a finally block
+
+-- 6 -: Equality Checks:
+        Use equals() for object comparison, not ==.
+        Always override hashCode() when you override equals().
+
+-- 7 -: String Concatenation:
+        Use StringBuilder for concatenating strings in loops, not +.
+
+-- 8 -: Arrays in Java:
+        a. Arrays in Java have a fixed size, You must specify the size of the array before using it, if you use curly braces syntax {} the size will be inferred from the number of elements provided. 
+        
+        b. Declaration: Declare an array by specifying the type, followed by square brackets, and the array name.
+        Example: int[] numbers;
+
+        c. Instantiation: after declaration you need to instantiate an array using the `new` keyword, followed by the type and the size.
+        Example: `numbers = new int[5];` creates an array for 5 integers.
+
+        d. Or declare and instantiate with one command:
+        Example: int[] numbers = new int[5];
+
+        e. If you know what the array will hold in advance then you can omit the word new and directly use:
+        Example: int[] numbers = {10, 20, 30, 40, 50};
+
+-- 9 -: Main method should always be public:
+        The main method in Java must always be declared as public. 
+        This is because the main method is the entry point of the program and needs to be accessible by the Java runtime environment.
+        Because the JVM (Java Virtual Machine) looks for this method to start the execution of the program. 
+        Making the `main` method non-public will prevent the JVM from accessing it, leading to runtime errors.
+
+-- 10 -:Passing Primitive and Composed Types to Methods:
+        In Java, when primitive type variables (like int, char, double) are used as method arguments, they are passed by value. 
+        This means a copy of the variable is created, and any modifications to it within the method do not affect the original variable. 
+        In contrast, composed types (such as objects and arrays) are passed by reference.
+        This means the method receives a copy of the reference pointing to the original object, not a copy of the object itself. 
+        As a result, changes made to the object via this reference within the method impact the original object in memory. 
+        However, strings are an exception although they are objects, but strings in Java are immutable.
+        This immutability means that any operations appearing to modify a string actually result in a new string, leaving the original unchanged even if you are reassigning the new value into the string variable.
+
+-- 11 -: Method Overloading:
+        it's about Implementing multiple methods with the same name in the same class but with different parameters types.
+        For example, void print(String message) and void print(int number) in the same class.
+        This is unique to Java compared to some languages like Go which has the generics feature which can lead to the same thing in a more good way.
+
+-- 12 -:Use of @Override Annotation:
+        The @Override annotation in Java is used to explicitly indicate that a method is intended to override a method in a superclass or implement a method from an interface.
+        It's not is not strictly required for your code to compile and run correctly, but it is considered to be a best practice to make it clear to anyone reading your code that the method is intended to override a method from a superclass. 
+        
+        Here are the key points:
+
+        a. Clarity: Placing `@Override` above a method declaration clarifies that the method is meant to override a method from its superclass or implement an interface method.
+
+        b. Compile-Time Safety: It helps catch common errors at compile time. For example, if you misspell a method name or mismatch the parameters while overriding, the compiler will generate an error, as it won't find the corresponding method in the superclass.
+
+        c. Enhanced Readability: It improves code readability, making it easier to understand the relationships between superclass and subclass methods or interface implementations.
+
+        
+-- 13 -:Abstract Classes and Methods:
+        a. Abstract classes: 
+                These are classes that cannot be instantiated directly. Use them as a base for other classes.
+        
+        b. Abstract methods: These are methods declared without an implementation. 
+                             They must be implemented in a subclass that extends the abstract class.Example: `abstract void draw();` in the `Shape` class.
+        
+        c. Instantiation: You cannot create an object of an abstract class directly. 
+                          Instead, extend the abstract class, and then you can instantiate the extended class. Example: `Circle circle = new Circle(5.0);` where `Circle` extends `Shape`.
+                
+        d. Overriding: Subclasses extending an abstract class must implement all its abstract methods. They can also override concrete(normal) methods.
+
+- 14 -: Default Methods in Interfaces:
+        Introduced in Java 8, default methods in interfaces allowed interfaces to provide an implementation for methods which didn't exist before, enabling interfaces to evolve without breaking existing implementations.
+        a. Optional to Override: Classes that implement the interface can either use the default method as it is or override it with a custom implementation.
+        b. Non-abstract Nature: Unlike traditional interface methods, default methods are not abstract and do have a body.
+        c. Evolutionary Use: They facilitate the addition of new functionalities to interfaces without impacting the classes that are already implementing the interface.
+
+-- 15 -: Anonymous Inner Classes:
+        a. Anonymous inner classes in Java are classes that are declared inside another class, and they do not have a name.
+        b. They are used for extending a class or implementing an interface in a concise syntactic sugar manner, directly within the scope where they are needed.
+        c. These classes are often used when you want to create a single instance of a class that extends an existing class or implements an interface without the need to define a separate named class.
+        d. Anonymous inner classes are particularly useful for providing custom behavior for a specific instance or context without bloating the code with unnecessary class definitions.
+
+-- 16 -: Package Declaration in Java Classes:
+        a. Always Include a Package Declaration: In Java, it's a good practice to include a package declaration in every class, including the Main class. This helps organize your code and prevents naming conflicts, especially in larger projects.
+        
+
+-- 17 -: Delete all compiled files
+                find . -name "*.class" -exec rm -rf {} \;
+
+-- 18 -: Compile all files into a bin directory, and then run the compiled Main class with the second command
+                find . -name "*.java" -print | xargs javac -d bin
+                java -cp bin com.myapp.Main
+                        java -cp bin => This sets the classpath to the bin directory. The classpath tells Java where to look for class files.
+                        com.myapp.Main => This is the fully qualified name of your main class. If your Main class is in a package, you need to include the package name in the command.
+
+-- 19 -: Exception Handling Best Practices:
+                a. Use Specific Exception Types: Always catch specific exceptions instead of using a general Exception type. This helps in handling specific error scenarios more effectively.
+
+                b. Avoid Empty Catch Blocks: Never leave a catch block empty. At the very least, log the exception. Ignoring exceptions can hide underlying problems.
+
+                c. Use Finally for Resource Cleanup: Ensure that resources (like streams or connections) are closed properly. Use the finally block or try-with-resources for this purpose.
+
+
+-- 20 -: Synchronization in Java:
+    Synchronization is crucial in multi-threaded applications to control access to shared resources and prevent data inconsistency.
+    a. Without Synchronization: 
+       - Multiple threads can access and modify shared resources concurrently, potentially leading to inconsistent data states.
+       - For example, if two threads are used to print characters from different strings using the same printer object without synchronization, the output might be mixed together, like "HWoerllldo".
+    b. Using 'synchronized':
+       - The 'synchronized' keyword in Java provides a mechanism to lock an object for any shared resource.
+       - Synchronization can be applied to methods or blocks:
+         i. Method-Level Synchronization: Declaring a method as synchronized locks the method for any thread until the current thread finishes its execution.
+         ii. Block-Level Synchronization: Synchronized block allows locking a specific part of the code rather than the entire method, providing more control and efficiency.
+       - Example: 
+         synchronized(this) {
+            // critical section code
+         }
+    c. Importance: 
+       - Synchronization prevents multiple threads from interfering with each other and ensures that shared resources are manipulated in a thread-safe manner.
+       - Removing the 'synchronized' keyword in multi-threaded scenarios dealing with shared resources can lead to unpredictable results and data corruption.
+
+-- 21 -: Functional interface:
+                A functional interface is an interface with just one abstract method (like Runnable, Callable, Comparator, etc.).
+
+-- 22 -: Lambda expressions:
+                Lambda expressions can be used anywhere where a functional interface is required.
+
+-- 23 -:Generics:
+        In Java, due to type erasure, you cannot directly create an array of a generic type.
+        Instead, you should create an array of a non-generic type (e.g., Object[] because everyone inherits from Object, and everything is an instance of Object either directly ir undirectly) and cast it to the desired generic.
+        1. wrong way:
+                public class GenericExample<T> {
+                        T[] wrongArray = new T[5];
+                }
+        2. correct way:
+                public class GenericExample<T> {
+                        T[] genericArray = (T[]) new Object[5];
+                }
+
+-- 24 -: JDBC and Database Drivers in Java:
+        a. JDBC as a Bridge: JDBC (Java Database Connectivity) acts as a universal bridge between Java applications and various databases, but it does not establish a connection to a specific database by itself. It only defines a standard set of interfaces and methods every database vendor should implement.
+        b. Role of Database Drivers: To connect to a specific database like SQLite, MySQL, or PostgreSQL, a corresponding database driver is required. This driver is an implementation of JDBC interfaces tailored for that particular database.
+        c. What exactly the Driver doing: When executing raw SQL queries, the database driver is crucial for protocol communication with the database, implementing the JDBC API, managing resources efficiently (like opening and closing connections), and handling errors by translating database messages into Java exceptions.
+        d. loading the driver manually is only required when java version is under 6, unless jdbc will load it automatically, but you should add the driver jar file to your project lib folder or environment and include it in the path when compiling or running, the manual load is done by => Class.forName("com.mysql.jdbc.Driver");
+
+-- 25 -: Java Modules :
+        a.  -module-path :
+                define modules location on your Operating System
+        
+        b. -add-modules :
+                explicitly declare which modules are required by your application when compiling and running Java applications with -module-path.
+        
+        c. compile and run commands using -module-path and -add-modules:
+                1. First way(globally installed modules):
+                        javac --module-path /home/Yanki/libraries/javafx-sdk-17/lib --add-modules javafx.controls Main.java
+                        java --module-path /home/Yanki/libraries/javafx-sdk-17/lib/ --add-modules javafx.controls Main 
+                2. Second way(locally installed modules, in the project):
+                        javac --module-path ./javafx-sdk-17/lib --add-modules javafx.controls Main.java
+                        java --module-path ./javafx-sdk-17/lib/ --add-modules javafx.controls Main 
+
+        d. -classpath: 
+                Purpose: It tells the Java runtime where to find the .class files needed to run your application. This can include directories and/or JAR files.
+        
+        e. Prefer -module-path Over -classpath for modules paths:
+                1. Use -module-path for specifying module locations in Java 9 and later. It offers better encapsulation, reliable configuration, and resolves "classpath hell" issues.
+                2. -classpath is still usable when needed to specify the path to your compiled .*class main file, but don't use it for pointing to modules and use -module-path  for that=> -cp path1:path2:... (on Unix/Linux) or -cp path1;path2;... (on Windows)
+        
+        f. module-info.java: The Blueprint:
+                1. Similar to package.json in Node.js, it defines module dependencies, exported packages, and services.
+                2. Use keywords like module, requires, exports and uses for module specifications.
+        
+
+-- 26 -: Issue of icons not being displayed when running your application from a JAR file:
+                This often arises due to the way resources (like images) are accessed within JAR files. 
+                When running from an IDE or directly from the command line in the project directory, the image paths are resolved as file system paths, so no problem in this case. 
+                However, when running from a JAR file, these resources need to be accessed as resources from the classpath.
+                To fix this issue, you should load your images as resources. 
+                Here's how you can modify your code:
+                        Step 1: Organize Your Resources: Place your icon images (undo.png and redo.png) inside a folder in your project, for example, a folder named resources. This folder should be included in your classpath.
+                        Step 2: Modify How You Load Icons : 
+                                a. Change how you load icons in your code. 
+                                b. Instead of loading them from a file path, load them as resources, first add this function to your code:
+                                        /** Returns an ImageIcon, or null if the path was invalid. */
+                                        protected ImageIcon createImageIcon(String path, String description) {
+                                                java.net.URL imgURL = getClass().getResource(path);
+                                                if (imgURL != null) {
+                                                        return new ImageIcon(imgURL, description);
+                                                } else {
+                                                        System.err.println("Couldn't find file: " + path);
+                                                        return null;
+                                                }
+                                        }
+                                c. now to load an icon do it like this using the createImageIcon utility function:
+                                            ImageIcon undoIcon = createImageIcon("/resources/undo.png", "Undo");
