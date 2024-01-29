@@ -1,5 +1,7 @@
-compile => 
+1. download javafx-sdk-17 and add it to the root first
+
+2. compile => 
     javac --module-path ./javafx-sdk-17/lib --add-modules javafx.controls,javafx.fxml src/MainApp.java src/SampleController.java
 
-run => 
+3. run => 
     java --module-path ./javafx-sdk-17/lib --add-modules javafx.controls,javafx.fxml -cp src MainApp

@@ -1,4 +1,6 @@
-there are a lot of ways to configure the compiling and running:
+1. download javafx-sdk-17 and add it to the root first
+
+2. there are a lot of ways to configure the compiling and running:
     1. First way, locally, like node_modules in nodejs : 
         1. download javafx and add the complete javafx sdk extracted folder(legal|lib|src|.zip) in the folder you are working on
         2. write your Main java file(the entry point to your app)
