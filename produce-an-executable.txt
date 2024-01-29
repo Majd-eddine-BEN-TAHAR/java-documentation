@@ -1,7 +1,7 @@
 1. compile code using:
     javac SimpleApp.java
 
-2. create MANIFEST.MF and add on it this line and make sure Make sure to a newline at the end of the file:
+2. create MANIFEST.MF and add on it this line and make sure to add a newline at the end of the file:
     Main-Class: SimpleApp 
 
 3. create a JAR file using this command:
